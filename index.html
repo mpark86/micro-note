@@ -1,12 +1,41 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>My Web Page</title>
-    </head>
 
-    <body>
-        <!-- This is a comment -->
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>My Web Page</title>
+</head>
+
+<body>
+    <!-- This is a comment -->
+    <h1>Hello World!</h1>
+
+    <div id="note" contenteditable></div>
+
+    <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script>
+    const fs = new Filer.FileSystem();
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed');
+            fs.readFile('/note', 'utf8', function(err, data) {
+                if (err) {
+                    document.querySelector('#note').innerHTML = "Welcome to my notepad!";
+                }
+                
+                if (data) {
+                    document.querySelector('#note').innerHTML = data;
+                }
+            });
+        });
+
+        window.setInterval(noteSave, 300, "Save Completed");
+
+        function noteSave(verification) {
+            fs.writeFile('/note', document.querySelector('#note').innerHTML);
+            console.log(verification);
+        }
+    </script>
+</body>
+
 </html>
