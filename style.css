@@ -1,0 +1,16 @@
+html {
+    background-color: #FFFF88
+}
+
+h1 {
+    text-align: center
+}
+#note {
+    text-align: center;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 4px solid black;
+    border-radius: 4px;
+}
